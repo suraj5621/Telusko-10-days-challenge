@@ -15,7 +15,7 @@ Intuition-->     In this approach we use use nested loops and a formula to print
                   elements. The code also uses a formula to update the element value without using addition. The code prints a new line after each row to separate them.
                   
  Code ---->
-        public class CodesCracker{
+        public class Main{
           public static void main(String[] args) {
                                                           // lets try for 5 rows 
             int row=5, i, j, space, num;
