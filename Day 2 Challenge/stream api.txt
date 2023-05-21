@@ -1,0 +1,40 @@
+we have normal --------------------------------------------------------------------->
+public List<Product> getProductWithText(String text) {
+ String str = text.toLowerCase();
+ List<Product> prods = new ArrayList<>();
+
+ for(Product p : products){
+ String name = p.getName().toLowerCase();
+ String type = p.getType().toLowerCase();
+ String place = p.getPlace().toLowerCase();
+ if(name.contains(str) || type.contains(str) || place.contains(str))
+ prods.add(p);
+ }
+ return prods;
+
+ }
+======================================================================================================================
+In this convert by using stream api---------------------------------------------------------->
+public List<Product> getProductWithText(String text) {
+  String str = text.toLowerCase();
+  return products.stream()
+    .filter(p -> p.getName().toLowerCase().contains(str) ||
+      p.getType().toLowerCase().contains(str) ||
+      p.getPlace().toLowerCase().contains(str))
+    .collect(Collectors.toList());
+}
+
+
+
+
+
+
+
+Explain--------------------------------->
+
+
+The Stream API is a new feature in Java 8 that provides a more concise and efficient way to write code that works with collections. The Stream API is based on the concept of streams, which are sequences of data that can be operated on in a pipeline.
+
+In the code above, we use the Stream API to filter the products list and only keep the products that contain the specified text. We do this by using the filter() method, which takes a predicate as its argument. The predicate is a function that takes a product as its argument and returns a boolean value. In this case, the predicate checks if the product's name, type, or place contains the specified text.
+
+Once we have filtered the products list, we can collect the filtered products into a new list using the collect() method. The collect() method takes a collector as its argument. The collector is a function that takes the filtered products and returns a new collection. In this case, we use the Collectors.toList() collector, which returns a new List object containing the filtered products.

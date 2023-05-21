@@ -1,0 +1,17 @@
+
+I define a Java class called Product. This class represents a product that can be sold in a store. The class has the following properties:
+
+name: The name of the product.
+type: The type of product.
+place: The location of the product.
+warranty: The warranty period for the product.
+The class also has the following methods:
+
+addProduct(): Adds a product to the store.
+getAllProducts(): Gets a list of all products in the store.
+getProduct(): Gets a product by its warranty period.
+getProductWithText(): Gets a list of products that contain a certain text in their name, type, or place.
+The Main class creates a Service object and then uses it to add some products to the store. The Main class then prints out a list of all 
+products, gets a product by its warranty period, and gets a list of products that contain the text "black" in their name, type, or
+ place.
+
