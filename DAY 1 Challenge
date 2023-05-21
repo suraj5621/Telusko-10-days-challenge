@@ -1,0 +1,173 @@
+This is a day 1 challenge in this challenge I got the Assignment from Navin Reddy Sir that is PASCAL TRIANGLE make by using Iterative manner , Recursion and Memoization
+
+So , HERE is Implimention -->
+
+APPROACH 1 ------->     Iterative Manner
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Intuition-->     In this approach we use use nested loops and a formula to print Pascal’s triangle. Pascal’s triangle is a triangular array of numbers where each number is the sum of the two numbers above it. 
+                  The program uses three variables to keep track of the row index, the element index, and the element value. It also uses a variable to print spaces before each row to make the triangle look 
+                  symmetrical. The program uses a formula to calculate the element value without using addition, which is faster and more efficient. The formula is based on the fact that each element in 
+                  Pascal’s triangle is equal to the binomial coefficient (i choose j), where i is the row index and j is the element index. The binomial coefficient can be calculated using factorials, but 
+                  the program simplifies it by using multiplication and division.
+             
+ Approach---->    The iterative method uses loops to repeat a set of instructions for each row and each element in the row. The code uses three nested loops: one for the rows, one for the spaces, and one for the 
+                  elements. The code also uses a formula to update the element value without using addition. The code prints a new line after each row to separate them.
+                  
+ Code ---->
+        public class CodesCracker{
+          public static void main(String[] args) {
+                                                          // lets try for 5 rows 
+            int row=5, i, j, space, num;
+            for(i=0; i<row; i++) {
+              for(space=row; space>i; space--) {
+                System.out.print(" ");
+              }
+              num=1;
+              for(j=0; j<=i; j++) {
+                System.out.print(num+ " ");
+                num = num*(i-j)/(j+1);
+              }
+              System.out.print("\n");
+            }
+          }
+        }
+        
+       
+Complexity --->  The complexity of the above code is O(n^2), where n is the number of rows to print. This is because the code uses three nested loops, each of which runs at most n times. 
+                  The formula to update the element value takes constant time, so it does not affect the complexity. Therefore, the overall time complexity is O(n^2). The space complexity is O(n),
+                  because the code uses an array of size n to store the current row. The array is reused for each row, so it does not increase the space complexity. Therefore, the overall space complexity 
+                  is O(n).
+              
+              
+==================================================================================================================================================================================================================
+
+
+APPROACH 2---> BY USING RECURSION
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Intution --->  We use a nested loop to print each row of the triangle with spaces before it to make it look symmetrical. The program uses a recursive function named pascalElement to calculate the value of each 
+                element in the triangle. The function uses a base case and a recursive case based on the fact that each element in Pascal’s triangle is equal to the binomial coefficient (i choose j), where i is 
+                the row index and j is the element index. The binomial coefficient can be calculated using factorials, but the program simplifies it by using recursion and addition.
+                
+                
+Approach --> The approach to print Pascal’s triangle recursively . The recursive method uses a function that calls itself with smaller values until it reaches a base case. The function uses a formula to calculate
+              the value of each element in the triangle without using addition. The program also uses a scanner object to read the user input for the number of rows to print. The program uses a nested loop
+              to print each row of the triangle with spaces before it to make it look symmetrical.
+              
+              
+ Code --->
+                import java.util.Scanner;
+
+                public class PascalTriangle {
+
+                  public static void main(String[] args) {
+                                                                          // take input of no. of rows
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.print("Enter the number of rows to print: ");
+                    int numRows = scanner.nextInt();
+                    System.out.println("Pascal Triangle:");
+                    printTriangle(numRows);
+                    scanner.close();
+                  }
+
+                  public static void printTriangle(int n) {
+                    for (int rowIndex = 0; rowIndex < n; rowIndex++) {
+                      for (int spaceIndex = 0; spaceIndex < n - rowIndex; spaceIndex++) {
+                        System.out.print(" ");
+                      }
+                      for (int elementIndex = 0; elementIndex <= rowIndex; elementIndex++) {
+                        System.out.print(pascalElement(rowIndex, elementIndex) + " ");
+                      }
+                      System.out.println();
+                    }
+                  }
+
+                  public static int pascalElement(int i, int j) {
+                    if (j == 0 || j == i) {
+                      return 1;
+                    } else {
+                      return pascalElement(i - 1, j - 1) + pascalElement(i - 1, j);
+                    }
+                  }
+                }
+                
+   
+   
+Complexity ---> The time complexity of the above code is O(n^2), where n is the number of rows to print. This is because the code uses a nested loop to print each row of the triangle, and each row has at most 
+                  n elements. The recursive function to calculate each element takes constant time, so it does not affect the time complexity. Therefore, the overall time complexity is O(n^2). The space 
+                  complexity is O(n), because the code uses an array of size n to store the current row. The array is reused for each row, so it does not increase the space complexity. Therefore, the overall 
+                  space complexity is O(n).
+                  
+  
+ ================================================================================================================================================================================================================
+ 
+ APPROACH ----> BY USING MEMOIZATION
+ 
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ Intution ---> The intuition for this is to use a map to store the previously computed values of the pascal triangle, so that they can be reused without recalculating them. This is called memoization, 
+                and it can improve the efficiency of recursive functions. The code uses a key that consists of the row and column indices, and a value that is the corresponding element in the pascal triangle. 
+                The map is initialized with the base cases, where the first and last elements of each row are 1. Then, the code defines a recursive function pascalElement that checks if the map contains the key 
+                for the given row and column. If yes, it returns the value from the map. If not, it calculates the value by adding the values of the upper-left and upper-right elements, and stores it in the map.
+                Then, it returns the value.The code also defines a function printTriangle that loops through each row and column, and prints the value returned by pascalElement. This function can be used to 
+                display the pascal triangle up to a given number of rows.
+                
+                
+Approach ---> The approach for this code is to use a recursive function to calculate the value of each element in the pascal triangle, and a map to store the computed values for future use. This is called 
+                memoization, and it can improve the efficiency of recursive functions. The code uses a key that consists of the row and column indices, and a value that is the corresponding element in the pascal
+                triangle. The map is initialized with the base cases, where the first and last elements of each row are 1. Then, the code defines a recursive function pascalElement that checks if the map 
+                contains the key for the given row and column. If yes, it returns the value from the map. If not, it calculates the value by adding the values of the upper-left and upper-right elements, and
+                stores it in the map. Then, it returns the value. The code also defines a function printTriangle that loops through each row and column, and prints the value returned by pascalElement.
+                This function can be used to display the pascal triangle up to a given number of rows.
+                
+                
+ Code ---> 
+              import java.util.HashMap;
+              import java.util.Map;
+
+              public class PascalTriangle {
+
+                private static Map<String, Integer> memo = new HashMap<>();
+
+                public static void main(String[] args) {
+                  printTriangle(10);
+                }
+
+                public static void printTriangle(int n) {
+                  for (int rowIndex = 0; rowIndex < n; rowIndex++) {
+                    for (int spaceIndex = 0; spaceIndex < n - rowIndex; spaceIndex++) {
+                      System.out.print(" ");
+                    }
+                    for (int elementIndex = 0; elementIndex <= rowIndex; elementIndex++) {
+                      System.out.print(pascalElement(rowIndex, elementIndex) + " ");
+                    }
+                    System.out.println();
+                  }
+                }
+
+                public static int pascalElement(int i, int j) {
+                  if (j == 0 || j == i) {
+                    return 1;
+                  } else {
+                    String key = i + "," + j;
+                    if (memo.containsKey(key)) {
+                      return memo.get(key);
+                    } else {
+                      int value = pascalElement(i - 1, j - 1) + pascalElement(i - 1, j);
+                      memo.put(key, value);
+                      return value;
+                    }
+                  }
+                }
+              }
+              
+              
+Complexity ---> The complexity for the above code depends on how many times the recursive function pascalElement is called and how many values are stored in the map. The worst case scenario is when the user 
+                asks for the value of the last element in a row, which is 1. In that case, the recursive function will be called n times, where n is the row number, and the map will store n * (n + 1) / 2 values,
+                which is the total number of elements in the triangle up to that row. Therefore, the time complexity and space complexity of the above code are both O (n^2), where n is the row number.
+                
+               
+===================================================================================================================================================================================================================
+
